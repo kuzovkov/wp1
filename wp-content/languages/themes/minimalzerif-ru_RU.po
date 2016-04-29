@@ -1,0 +1,71 @@
+# Translation of MinimalZerif in Russian
+# This file is distributed under the same license as the MinimalZerif package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-03-29 18:24:55+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/1.1.0-alpha\n"
+"Project-Id-Version: MinimalZerif\n"
+
+#. Description of the plugin/theme
+msgid "Free WordPress Theme for WP.org."
+msgstr "Бесплатная WordPress тема для WP.org."
+
+#. Theme Name of the plugin/theme
+msgid "MinimalZerif"
+msgstr "MinimalZerif"
+
+#: sections/big_title.php:33
+msgid "What's inside"
+msgstr "Что внутри"
+
+#: sections/big_title.php:24
+msgid "Features"
+msgstr "Особенности"
+
+#: sections/big_title.php:9
+msgid "Clean and Minimal WordPress Theme"
+msgstr "Простая и минимальная WordPress тема"
+
+#: includes/customizer.php:59
+msgid "Black Logo"
+msgstr "Черное лого"
+
+#: includes/customizer.php:67
+msgid "Entry:"
+msgstr "Вход:"
+
+#: includes/customizer.php:36
+msgid "Disable logo text?"
+msgstr "Убрать текст логотипа?"
+
+#: includes/customizer.php:47
+msgid "White Logo"
+msgstr "Белый логотип"
+
+#: header.php:68
+msgid "Menu"
+msgstr "Меню"
+
+#: front-page.php:90 front-page.php:92 includes/customizer.php:65
+msgid "<b>Eleven Madison Park</b><br />11 Madison Ave<br />New York, NY 10010<br />U.S.A.<br />"
+msgstr "<b>Eleven Madison Park</b><br />11 Madison Ave<br />New York, NY 10010<br />U.S.A.<br />"
+
+#: footer.php:12
+msgid "powered by"
+msgstr "создано с помощью"
+
+#: front-page.php:80 front-page.php:82 front-page.php:83
+msgid "Get in touch"
+msgstr "Контактная информация"
+
+#. Author URI of the plugin/theme
+msgid "http://www.9pixels.co"
+msgstr "http://www.9pixels.co"
+
+#. Author of the plugin/theme
+msgid "9Pixels"
+msgstr "9Pixels"
