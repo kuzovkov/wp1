@@ -21,7 +21,8 @@ class DSeller {
         'dseller_sign' => 'md5',
         'dseller_success_method' => 'get',
         'dseller_fail_method' => 'get',
-        'dseller_purse' => 'none'
+        'dseller_purse' => 'none',
+        'dseller_sim_mode' => '0'
 
     );
 
@@ -97,8 +98,8 @@ class DSeller {
 
         $this->add_options();
 
-        $table_products = $wpdb->prefix . 'dseller_products';
-        $table_downloadcodes = $wpdb->prefix . 'dseller_downloadcodes';
+        $table_products = $wpdb->prefix . $this->table_product;
+        $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
 
         $sql1 = "CREATE TABLE IF NOT EXISTS `". $table_downloadcodes ."` 
         (
@@ -124,8 +125,8 @@ class DSeller {
 
     public function uninstall(){
         global $wpdb;
-        $table_products = $wpdb->prefix . 'dseller_products';
-        $table_downloadcodes = $wpdb->prefix . 'dseller_downloadcodes';
+        $table_products = $wpdb->prefix . $this->table_product;
+        $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $this->delete_options();
 
         $sql1 = "DROP TABLE IF EXISTS `". $table_products ."`;";
@@ -152,10 +153,22 @@ class DSeller {
         require('views/payments_page.php');
     }
 
+
+    /**
+     * @param $id ID продукта
+     * @return mixed
+     */
     public function get_product($id){
         global $wpdb;
-        $table_products = $wpdb->prefix . 'dseller_products';
+        $table_products = $wpdb->prefix . $this->table_product;
+        $product = $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM $table_products WHERE id=$id")
+        );
+        return $product;
+    }
 
+    public function show_wm_payment_form($id){
+        require('views/wm_payment_form.php');
     }
 
 

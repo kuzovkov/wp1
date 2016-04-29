@@ -37,6 +37,13 @@
         <option value="md5" <?php if(get_option('dseller_sign') == 'md5') echo 'selected';?>>MD5</option>
     </select>
     </div>
+    <div class="form-group"><label for="dseller_sim_mode">Дополнительное поле, определяющее режим тестирования:</label>
+    <select id="dseller_sim_mode" name="dseller_sim_mode"  class="form-control" >
+        <option value="0" <?php if(get_option('dseller_sim_mode') == '0') echo 'selected';?>>0</option>
+        <option value="1" <?php if(get_option('dseller_sim_mode') == '1') echo 'selected';?>>1</option>
+        <option value="2" <?php if(get_option('dseller_sim_mode') == '2') echo 'selected';?>>2</option>
+    </select>
+    </div>
     <button name="dseller_wm_opt_btn" type="submit" class="btn btn-default">Сохранить</button>
 </form>
 
