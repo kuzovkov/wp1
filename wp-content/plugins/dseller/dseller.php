@@ -32,6 +32,7 @@ class DSeller {
 
     public $table_product = 'dseller_products';
     public $table_downloadcodes = 'dseller_downloadcodes';
+    public $field_file_name = 'file';
 
     public function __construct(){
         global $wpdb;
@@ -44,7 +45,7 @@ class DSeller {
     public function add_admin_pages(){
         add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_main_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
         add_submenu_page( 'dseller-opt', 'WebMoney', 'WebMoney', 8, 'dseller-wm-opt', array($this,'show_wm_opt_page'));
-        add_submenu_page( 'dseller-opt', 'Товары', 'Товары', 8, 'dseller-goods-opt', array($this,'show_goods_page') );
+        add_submenu_page( 'dseller-opt', 'Товары', 'Товары', 8, 'dseller-products-opt', array($this,'show_products_page') );
         add_submenu_page( 'dseller-opt', 'Платежи', 'Платежи', 8, 'dseller-payments-opt', array($this,'show_payments_page') );
     }
 
@@ -130,7 +131,6 @@ class DSeller {
         $this->delete_options();
 
         $sql1 = "DROP TABLE IF EXISTS `". $table_products ."`;";
-
         $sql2 = "DROP TABLE IF EXISTS `". $table_downloadcodes ."`;";
 
         $wpdb->query($sql1);
@@ -141,8 +141,8 @@ class DSeller {
         require('views/main_page.php');
     }
 
-    public function show_goods_page(){
-        require('views/goods_page.php');
+    public function show_products_page(){
+        require('views/products_page.php');
     }
 
     public function show_wm_opt_page(){
@@ -165,6 +165,86 @@ class DSeller {
             $wpdb->prepare("SELECT * FROM $table_products WHERE id=$id")
         );
         return $product;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_products(){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $products = $wpdb->get_results("SELECT * FROM $table_products");
+        return $products;
+    }
+
+    /**
+     * @param $name
+     * @param $price
+     * @param $url
+     */
+    public function add_product($name, $price, $url){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $wpdb->insert(
+            $table_products,
+            array('name' => $name, 'cost'=> $price, 'url' => $url),
+            array('%s', '%s', '%s')
+        );
+    }
+    
+    public function delete_product($id){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $wpdb->query("DELETE FROM $table_products WHERE id=$id");
+        $this->delete_lost_files();
+    }
+
+    public function update_product($id, $name, $price, $url){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $wpdb->update($table_products,
+                array('name' => $name, 'cost' => $price, 'url' => $url),
+                array('id' => $id),
+                array('%s', '%s', '%s'),
+                array('%d')
+            );
+        $this->delete_lost_files();
+    }
+
+    public function delete_lost_files(){
+        $products = $this->get_products();
+        $files = array();
+        foreach($products as $product){
+            $files[] = basename($product->url);
+        }
+        if (file_exists(ABSPATH . get_option('dseller_dir')) && is_dir(ABSPATH . get_option('dseller_dir'))){
+            foreach(scandir(ABSPATH . get_option('dseller_dir')) as $file){
+                if ($file == '.' || $file == '..') continue;
+                if (!in_array($file, $files)){
+                    unlink(ABSPATH . get_option('dseller_dir') .'/' . $file);
+                }
+            }
+        }
+
+    }
+
+    public function upload_file($files){
+        if (isset($files['error']) && $files['error'] == 0){
+            if ($this->check_upload_dir()){
+                $tmp_name = $files['tmp_name'];
+                $name = $files['name'];
+                return (move_uploaded_file($tmp_name, ABSPATH . get_option('dseller_dir') . '/' . $name))? $name : false;
+            }
+        }
+    }
+
+    public function check_upload_dir(){
+        $upload_dir = ABSPATH . get_option('dseller_dir');
+        if (file_exists($upload_dir) && is_dir($upload_dir)){
+            return true;
+        }else{
+            return mkdir($upload_dir);
+        }
     }
 
     public function show_wm_payment_form($id){
