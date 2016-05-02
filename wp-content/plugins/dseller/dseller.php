@@ -13,21 +13,23 @@ class DSeller {
 
 
     public $wm_options = array(
-        'dseller_shop_id' => 'none',
+        'dseller_shop_id' => 'VideoService',
         'dseller_success_url' => 'none',
         'dseller_fail_url' => 'none',
         'dseller_result_url' => 'none',
-        'dseller_secret_key' => 'none',
+        'dseller_secret_key' => 'Sekret_Merchant',
         'dseller_sign' => 'md5',
         'dseller_success_method' => 'get',
         'dseller_fail_method' => 'get',
-        'dseller_purse' => 'none',
+        'dseller_purse' => 'R425889686600',
         'dseller_sim_mode' => '0'
 
     );
 
     public $options = array(
-        'dseller_dir' => 'upload'
+        'dseller_dir' => 'upload',
+        'dseller_category' => 'digit_products',
+        'dseller_buy_url' => 'dseller_buy'
     );
 
     public $table_product = 'dseller_products';
@@ -40,18 +42,35 @@ class DSeller {
         add_action('init', array($this,'run'));
         register_activation_hook(__FILE__, array($this,'install'));
         register_deactivation_hook(__FILE__, array($this,'uninstall'));
+        //add_filter('the_content', 'show_buy_button');
     }
 
     public function add_admin_pages(){
         add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_main_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
         add_submenu_page( 'dseller-opt', 'WebMoney', 'WebMoney', 8, 'dseller-wm-opt', array($this,'show_wm_opt_page'));
         add_submenu_page( 'dseller-opt', 'Товары', 'Товары', 8, 'dseller-products-opt', array($this,'show_products_page') );
+        add_submenu_page( 'dseller-opt', 'Добавить товар', 'Добавить товар', 8, 'dseller-product-add', array($this,'show_product_add_page') );
         add_submenu_page( 'dseller-opt', 'Платежи', 'Платежи', 8, 'dseller-payments-opt', array($this,'show_payments_page') );
     }
 
 
     public function run(){
+        $real_uri = $_SERVER['REQUEST_URI'];
+        if (($p = strpos($real_uri, '?')) === false){
+            $uri = substr($real_uri, 1);
+        }else{
+            $uri = substr($real_uri, 1, strpos($real_uri, '?'));
+        }
 
+        if ($uri == get_option('dseller_buy_url')){
+            $id = (isset($_POST['id']))? intval($_POST['id']) : null;
+            if ($id !== null){
+                $this->send_payment_request($id);
+            }else{
+                wp_redirect( '/', 302 );
+            }
+            exit();
+        }
     }
 
     public function add_options(){
@@ -115,8 +134,10 @@ class DSeller {
         (
             `id` INT(10) NOT NULL AUTO_INCREMENT,
             `name` varchar(250) NOT NULL,
+            `description` TEXT,
             `cost` varchar(250) NOT NULL,
             `url` varchar(250) NOT NULL,
+            `post_id` INT(10) DEFAULT 0,
             PRIMARY KEY (`id`)
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
@@ -145,12 +166,53 @@ class DSeller {
         require('views/products_page.php');
     }
 
+    public function show_product_add_page(){
+        require('views/product_add_page.php');
+    }
+
     public function show_wm_opt_page(){
         require('views/wm_opt_page.php');
     }
 
     public function show_payments_page(){
         require('views/payments_page.php');
+    }
+
+    public function get_buy_button($product){
+        $form = "<form method='post' action='/". get_option('dseller_buy_url') ."'>
+            <input type='hidden' name='id' value='{$product->id}'/>
+            <button>Купить</button>
+        </form>";
+        return $form;
+    }
+
+    public function send_payment_request($id){
+        require('views/payment_forms.php');
+    }
+
+    public function add_product_post(){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $row = $wpdb->get_row("SELECT MAX(id) AS id FROM $table_products");
+        $product = $this->get_product(intval($row->id));
+        $category = get_category_by_slug( get_option('dseller_category') );
+        $category_id = $category->cat_ID;
+        $post_data = array(
+            'post_title'    => wp_strip_all_tags( $product->name ),
+            'post_content'  => $product->description . $this->get_buy_button($product),
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_category' => array( $category_id )
+        );
+        $post_id = wp_insert_post( $post_data );
+        $wpdb->update($table_products,
+            array('post_id' => $post_id),
+            array('id' => $product->id),
+            array('%s'),
+            array('%d')
+        );
+        return;
+
     }
 
 
@@ -162,7 +224,7 @@ class DSeller {
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
         $product = $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM $table_products WHERE id=$id")
+            $wpdb->prepare("SELECT * FROM $table_products WHERE id=%d", $id)
         );
         return $product;
     }
@@ -182,21 +244,24 @@ class DSeller {
      * @param $price
      * @param $url
      */
-    public function add_product($name, $price, $url){
+    public function add_product($name, $price, $url, $desc){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
         $wpdb->insert(
             $table_products,
-            array('name' => $name, 'cost'=> $price, 'url' => $url),
-            array('%s', '%s', '%s')
+            array('name' => $name, 'cost'=> $price, 'url' => $url, 'description' => $desc),
+            array('%s', '%s', '%s', '%s')
         );
     }
     
     public function delete_product($id){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
+        $product = $this->get_product($id);
+        $post_id = $product->post_id;
         $wpdb->query("DELETE FROM $table_products WHERE id=$id");
         $this->delete_lost_files();
+        wp_delete_post($post_id);
     }
 
     public function update_product($id, $name, $price, $url){
@@ -248,7 +313,7 @@ class DSeller {
     }
 
     public function show_wm_payment_form($id){
-        require('views/wm_payment_form.php');
+        require('views/payment_forms.php');
     }
 
 

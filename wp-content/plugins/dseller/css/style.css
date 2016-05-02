@@ -3,6 +3,11 @@
     width: 500px;
 }
 
+.opt-form textarea
+{
+    width: 500px;
+}
+
 .opt-form select
 {
     width: 100px;

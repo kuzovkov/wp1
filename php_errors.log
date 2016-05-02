@@ -1,0 +1,8 @@
+[02-May-2016 15:34:23 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:34:23 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:34:36 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:35:15 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:35:15 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:35:15 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 15:35:15 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'show_buy_button' not found or invalid function name in /var/www/blog-cook/wp-includes/plugin.php on line 235
+[02-May-2016 20:28:52 UTC] PHP Parse error:  syntax error, unexpected 'preg_match' (T_STRING) in /var/www/blog-cook/wp-content/plugins/dseller/dseller.php on line 60
