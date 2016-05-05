@@ -15,6 +15,7 @@
     <input type="hidden" name="LMI_PAYMENT_NO" value="<?php echo $product->no;?>">
     <input type="hidden" name="LMI_PAYEE_PURSE" value="<?echo get_option('dseller_purse');?>">
     <input type="hidden" name="LMI_SIM_MODE" value="<?echo get_option('dseller_sim_mode');?>">
+    <input type="hidden" name="PRODUCT_ID" value="<?echo $product->id;?>">
 </form>
 
 

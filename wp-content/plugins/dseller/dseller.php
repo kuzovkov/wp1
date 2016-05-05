@@ -14,13 +14,13 @@ class DSeller {
 
     public $wm_options = array(
         'dseller_shop_id' => 'VideoService',
-        'dseller_success_url' => 'none',
-        'dseller_fail_url' => 'none',
-        'dseller_result_url' => 'none',
+        'dseller_success_url' => 'dseller_wm_success',
+        'dseller_fail_url' => 'dseller_wm_fail',
+        'dseller_result_url' => 'dseller_wm_result',
         'dseller_secret_key' => 'Sekret_Merchant',
         'dseller_sign' => 'md5',
-        'dseller_success_method' => 'get',
-        'dseller_fail_method' => 'get',
+        'dseller_success_method' => 'post',
+        'dseller_fail_method' => 'post',
         'dseller_purse' => 'R425889686600',
         'dseller_sim_mode' => '0'
 
@@ -65,6 +65,27 @@ class DSeller {
                 wp_redirect( '/', 302 );
             }
             exit();
+        }elseif ($uri == get_option('dseller_success_url')){
+
+        }elseif($uri == get_option('dseller_fail_url')){
+
+        }elseif($uri == get_option('dseller_result_url')){
+            $result = $_POST['LMI_PAYEE_PURSE'].$_POST['LMI_PAYMENT_AMOUNT'].$_POST['LMI_PAYMENT_NO'].$_POST['LMI_MODE'].$_POST['LMI_SYS_INVS_NO'].$_POST['LMI_SYS_TRANS_NO'].$_POST['LMI_SYS_TRANS_DATE'].get_option('dseller_secret_key').$_POST['LMI_PAYER_PURSE'].$_POST['LMI_PAYER_WM'];
+            $md5res = strtoupper(md5($result));
+            if ($_POST['LMI_HASH'] == $md5res) {
+                $dcode = $this->random_stirng(20);
+                $ctime = time();
+                $product_id = $_POST['PRODUCT_ID'];
+                global $wpdb;
+                $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
+                $wpdb->insert(
+                    $table_downloadcodes,
+                    array('download_code' => $dcode, 'ctime'=> $ctime, 'product_id' => $product_id),
+                    array('%s', '%d', '%d')
+                );
+
+            }
+
         }
     }
 
@@ -290,6 +311,23 @@ class DSeller {
             return mkdir($upload_dir);
         }
     }
+
+    public function random_stirng($n){
+        $str = 'wertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
+        $arr = str_split($str);
+        $pass= '';
+        for ($i = 0; $i < $n; $i++){
+            $index = rand(0, count($arr) - 1);
+            $pass .= $arr[$index];
+        }
+        return $pass;
+    }
+
+    public function change_content($content){
+
+    }
+
+
     
 }
 
