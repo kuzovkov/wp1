@@ -1,23 +1,3 @@
-<?php include('_header.php'); ?>
-<?php
-
-    if($this->is_form_submited('dseller_product_update_btn')){
-        $name = $_POST['name'];
-        $price = $_POST['price'];
-        $url = $_POST['url'];
-        $id = $_POST['id'];
-        $desc = $_POST['desc'];
-        $this->update_product($id, $name, $price, $url);
-    }
-
-    if($this->is_form_submited('dseller_product_del_btn')){
-        $id = intval($_POST['id']);
-        $this->delete_product($id);
-    }
-
-    $products = $this->get_products();
-?>
-
 
 <h2>Список товаров</h2>
 
@@ -33,7 +13,7 @@
             <th></th>
         </tr>
 <?php foreach($products as $item):?>
-    <form class="opt-form" name="dseller_form" method="post" action="<?php echo $_SERVER['HTTP_SELF']?>?page=dseller-products-opt&amp;update=true">
+    <form class="opt-form" name="dseller_form" method="post" action="<?php echo $_SERVER['HTTP_SELF']?>?page=dseller-opt&amp;update=true&amp;tab=list_products">
         <?php if(function_exists('wp_nonce_field')) wp_nonce_field( 'dseller_form' ); ?>
         <tr>
             <td><?php echo $item->id?></td>
@@ -51,6 +31,3 @@
     </table> 
 <?php endif; ?>
 
-
-<?php include('_footer.php');?>
-<?php include ('_tinymce.php');?>

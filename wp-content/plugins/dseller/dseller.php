@@ -42,15 +42,10 @@ class DSeller {
         add_action('init', array($this,'run'));
         register_activation_hook(__FILE__, array($this,'install'));
         register_deactivation_hook(__FILE__, array($this,'uninstall'));
-        //add_filter('the_content', 'show_buy_button');
     }
 
     public function add_admin_pages(){
-        add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_main_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
-        add_submenu_page( 'dseller-opt', 'WebMoney', 'WebMoney', 8, 'dseller-wm-opt', array($this,'show_wm_opt_page'));
-        add_submenu_page( 'dseller-opt', 'Товары', 'Товары', 8, 'dseller-products-opt', array($this,'show_products_page') );
-        add_submenu_page( 'dseller-opt', 'Добавить товар', 'Добавить товар', 8, 'dseller-product-add', array($this,'show_product_add_page') );
-        add_submenu_page( 'dseller-opt', 'Платежи', 'Платежи', 8, 'dseller-payments-opt', array($this,'show_payments_page') );
+        add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_settings_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
     }
 
 
@@ -158,24 +153,8 @@ class DSeller {
         $wpdb->query($sql2);
     }
 
-    public function show_main_page(){
-        require('views/main_page.php');
-    }
-
-    public function show_products_page(){
-        require('views/products_page.php');
-    }
-
-    public function show_product_add_page(){
-        require('views/product_add_page.php');
-    }
-
-    public function show_wm_opt_page(){
-        require('views/wm_opt_page.php');
-    }
-
-    public function show_payments_page(){
-        require('views/payments_page.php');
+    public function show_settings_page(){
+        require('views/settings_page.php');
     }
 
     public function get_buy_button($product){
@@ -311,12 +290,7 @@ class DSeller {
             return mkdir($upload_dir);
         }
     }
-
-    public function show_wm_payment_form($id){
-        require('views/payment_forms.php');
-    }
-
-
+    
 }
 
 

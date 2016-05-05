@@ -4,7 +4,3 @@
 
 <?php include('_footer.php');?>
 
-<?php
-
-
-?>

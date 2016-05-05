@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<img src="<?php echo plugins_url();?>/dseller/img/332.gif"/>
+<img class="preloader" src="<?php echo plugins_url();?>/dseller/img/preloader.gif"/>
 
 <?php $product = $this->get_product($id);?>
 

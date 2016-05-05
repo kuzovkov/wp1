@@ -1,16 +1,7 @@
-<?php include('_header.php'); ?>
-<?php
 
-    if ($this->is_form_submited('dseller_wm_opt_btn')){
-        foreach($this->wm_options as $key => $val){
-            update_option($key, $_POST[$key]);
-        }
-    }
-
-?>
 
 <h2>Настройки WebMoney</h2>
-<form class="opt-form" name="dseller_form" method="post" action="<?php echo $_SERVER['HTTP_SELF']?>?page=dseller-wm-opt&amp;update=true">
+<form class="opt-form" name="dseller_form" method="post" action="<?php echo $_SERVER['HTTP_SELF']?>?page=dseller-opt&amp;update=true&amp;tab=webmoney">
     <?php if(function_exists('wp_nonce_field')) wp_nonce_field( 'dseller_form' ); ?>
     <div class="form-group"><label for="purse">Кошелек для приема оплаты:</label><input id="purse" class="form-control" name="dseller_purse" value="<?php echo get_option("dseller_purse")?>"/></div>
     <div class="form-group"><label for="shop_id">Shop ID:</label><input id="shop_id" class="form-control" name="dseller_shop_id" value="<?php echo get_option("dseller_shop_id")?>"/></div>
@@ -47,4 +38,3 @@
     <button name="dseller_wm_opt_btn" type="submit" class="btn btn-default">Сохранить</button>
 </form>
 
-<?php include('_footer.php');?>
