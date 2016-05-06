@@ -57,7 +57,7 @@ class DSeller {
         if (($p = strpos($real_uri, '?')) === false){
             $uri = substr($real_uri, 1);
         }else{
-            $uri = substr($real_uri, 1, strpos($real_uri, '?'));
+            $uri = substr($real_uri, 1, strpos($real_uri, '?') - 1);
         }
 
         if ($uri == get_option('dseller_buy_url')){
@@ -79,6 +79,7 @@ class DSeller {
         }elseif($uri == get_option('dseller_result_url')){
             if ($this->wm_check_result()) {
                 $this->add_download_code($_POST);
+                $this->add_payment($_POST);
             }
             exit();
         }elseif($uri == get_option('dseller_download_url')){
@@ -298,10 +299,11 @@ class DSeller {
                 'SYS_TRANS_NO' => strval($post['LMI_SYS_TRANS_NO']),
                 'PAYER_PURSE' => strval($post['LMI_PAYER_PURSE']),
                 'PAYER_WM' => strval($post['LMI_PAYER_WM']),
-                'SYS_TRANS_DATE' => new DateTime($post['LMI_SYS_TRANS_DATE']),
+                //'SYS_TRANS_DATE' => new DateTime($post['LMI_SYS_TRANS_DATE']),
+                'SYS_TRANS_DATE' => $post['LMI_SYS_TRANS_DATE'],
                 'PAYMENT_DESC' => strval($post['LMI_PAYMENT_DESC']),
             ),
-            array('%d', '%f', '%s', '%s', '%s', '%s', '%s', '%s')
+            array('%d', '%f', '%s', '%s', '%s', '%s', '%d', '%s')
         );
 
     }
@@ -436,13 +438,13 @@ class DSeller {
         wp_delete_post($post_id);
     }
 
-    public function update_product($id, $name, $price, $url){
+    public function update_product($id, $name, $price, $url, $desc){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
         $wpdb->update($table_products,
-                array('name' => $name, 'cost' => $price, 'url' => $url),
+                array('name' => $name, 'cost' => $price, 'url' => $url, 'description' => $desc),
                 array('id' => $id),
-                array('%s', '%s', '%s'),
+                array('%s', '%s', '%s', '%s'),
                 array('%d')
             );
         $this->delete_lost_files();

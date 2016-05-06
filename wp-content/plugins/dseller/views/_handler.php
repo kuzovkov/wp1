@@ -35,8 +35,8 @@
         $price = $_POST['price'];
         $url = $_POST['url'];
         $id = $_POST['id'];
-        $desc = $_POST['desc'];
-        $this->update_product($id, $name, $price, $url);
+        $desc = $_POST['description'];
+        $this->update_product($id, $name, $price, $url, $desc);
     }
 
     if($this->is_form_submited('dseller_product_del_btn')){
