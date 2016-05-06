@@ -23,7 +23,7 @@
     <div class="form-group"><label for="result_url">Result URL:</label><input id="result_url"  class="form-control" name="dseller_result_url" value="<?php echo get_option("dseller_result_url")?>"/></div>
     <div class="form-group"><label for="dseller_sign">Метод формирования контрольной подписи оповещения о платеже:</label>
     <select id="dseller_sign" name="dseller_sign"  class="form-control" >
-        <option value="sign" <?php if(get_option('dseller_sign') == 'sign') echo 'selected';?>>SIGN</option>
+        <!--<option value="sign" <?php if(get_option('dseller_sign') == 'sign') echo 'selected';?>>SIGN</option>-->
         <option value="sha256" <?php if(get_option('dseller_sign') == 'sha256') echo 'selected';?>>SHA256</option>
         <option value="md5" <?php if(get_option('dseller_sign') == 'md5') echo 'selected';?>>MD5</option>
     </select>
