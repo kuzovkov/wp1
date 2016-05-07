@@ -43,6 +43,8 @@ class DSeller {
         global $wpdb;
         add_action('admin_menu', array($this,'add_admin_pages'));
         add_action('init', array($this,'run'));
+        add_action('wp_logout', array($this,'endSession'));
+        add_action('wp_login', array($this, 'endSession'));
         register_activation_hook(__FILE__, array($this,'install'));
         register_deactivation_hook(__FILE__, array($this,'uninstall'));
     }
@@ -51,8 +53,19 @@ class DSeller {
         add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_settings_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
     }
 
+    public function startSession() {
+        if(!session_id()) {
+            session_start();
+        }
+    }
+
+    public function endSession() {
+        session_destroy ();
+    }
+
 
     public function run(){
+        $this->startSession();
         $real_uri = $_SERVER['REQUEST_URI'];
         if (($p = strpos($real_uri, '?')) === false){
             $uri = substr($real_uri, 1);
@@ -181,12 +194,13 @@ class DSeller {
      */
     public function download_file($url){
         $filename = basename($url);
+        $fullname = ABSPATH . get_option('dseller_dir') . '/' . $filename;
         header('Content-Disposition: attachment; filename=' . $filename);
-        header('Content-Length: ' . filesize($url));
+        header('Content-Length: ' . filesize($fullname));
         header('Keep-Alive: timeout=5; max=100');
         header('Connection: Keep-Alive');
         header('Content-Type: coter-stream');
-        readfile($url);
+        readfile($fullname);
         exit();
     }
 
@@ -198,7 +212,7 @@ class DSeller {
         $final_time = time() - intval(get_option('dseller_link_timelive')) * 3600 * 24;
         $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $wpdb->query(
-            $wpdb->prepare("DELETE DROM $table_downloadcodes WHERE ctime < %d", $final_time)
+            $wpdb->prepare("DELETE FROM $table_downloadcodes WHERE ctime < %d", $final_time)
         );
     }
 
@@ -290,6 +304,7 @@ class DSeller {
     public function add_payment($post){
         global $wpdb;
         $table_payments = $wpdb->prefix .$this->table_payments;
+        $date = DateTime::createFromFormat('Ymd H:i:s', strval($post['LMI_SYS_TRANS_DATE']));
         $wpdb->insert(
             $table_payments,
             array(
@@ -299,8 +314,7 @@ class DSeller {
                 'SYS_TRANS_NO' => strval($post['LMI_SYS_TRANS_NO']),
                 'PAYER_PURSE' => strval($post['LMI_PAYER_PURSE']),
                 'PAYER_WM' => strval($post['LMI_PAYER_WM']),
-                //'SYS_TRANS_DATE' => new DateTime($post['LMI_SYS_TRANS_DATE']),
-                'SYS_TRANS_DATE' => $post['LMI_SYS_TRANS_DATE'],
+                'SYS_TRANS_DATE' => $date->format('Y-m-d H:i:s'),
                 'PAYMENT_DESC' => strval($post['LMI_PAYMENT_DESC']),
             ),
             array('%d', '%f', '%s', '%s', '%s', '%s', '%d', '%s')
