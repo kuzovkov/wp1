@@ -1,0 +1,11 @@
+Array
+(
+    [PAYMENT_NO] => 1462637059
+    [PAYMENT_AMOUNT] => 0.5
+    [PAYEE_PURSE] => R425889686600
+    [SYS_TRANS_NO] => 1323151733
+    [PAYER_PURSE] => R893994447637
+    [PAYER_WM] => 849369644076
+    [SYS_TRANS_DATE] => 2016-05-07 19:05:11
+    [PAYMENT_DESC] => Оплата за товар Мой виджет
+)

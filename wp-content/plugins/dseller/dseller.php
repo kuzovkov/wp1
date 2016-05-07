@@ -67,6 +67,7 @@ class DSeller {
     public function run(){
         $this->startSession();
         $real_uri = $_SERVER['REQUEST_URI'];
+
         if (($p = strpos($real_uri, '?')) === false){
             $uri = substr($real_uri, 1);
         }else{
@@ -98,6 +99,11 @@ class DSeller {
         }elseif($uri == get_option('dseller_download_url')){
             $this->start_download();
             exit();
+        }elseif($uri == 'dseller_debug'){
+            $this->add_payment(array());
+            exit();
+        }else{
+            $_SESSION['curr_uri'] = $real_uri;
         }
     }
 
@@ -109,25 +115,15 @@ class DSeller {
 
 
     public function show_wm_success($arr){
-        echo "<h2>success</h2>";
-        $timelive = get_option('dseller_link_timelive');
-        $dcode = $arr['DCODE'];
-        $link = home_url() . '/' . get_option('dseller_download_url') . '?dcode=' . $dcode;
-        echo "<p>Ваша ссылка на скачивание: $link (действительна $timelive дней)</p>";
-        if (is_array($arr)){
-            foreach($arr as $key => $val){
-                echo "<p>$key => $val</p>";
-            }
-        }
+        include('views/wm_success.php');
     }
 
     public function show_wm_fail($arr){
-        echo "<h2>fail</h2>";
-        if (is_array($arr)){
-            foreach($arr as $key => $val){
-                echo "<p>$key => $val</p>";
-            }
-        }
+        include('views/wm_fail.php');
+    }
+
+    public function show_link_fail(){
+        include('views/link_fail.php');
     }
 
 
@@ -181,7 +177,7 @@ class DSeller {
                 $url = $product->url;
                 $this->download_file($url);
             }else{
-                echo "Ссылка не активна";
+                $this->show_link_fail();
             }
         }
 
@@ -303,8 +299,40 @@ class DSeller {
 
     public function add_payment($post){
         global $wpdb;
+        $wpdb->show_errors();
         $table_payments = $wpdb->prefix .$this->table_payments;
+        file_put_contents('mydebug.txt', print_r($post, true));
+        /*
+        $post = array
+        (
+            'LMI_PAYMENT_NO' => '1462637059',
+            'LMI_PAYMENT_AMOUNT' => '0.5',
+            'LMI_PAYEE_PURSE' => 'R425889686600',
+            'LMI_SYS_TRANS_NO' => '1323151733',
+            'LMI_PAYER_PURSE' => 'R893994447637',
+            'LMI_PAYER_WM' => '849369644076',
+            'LMI_SYS_TRANS_DATE' => '20160507 20:00:00',
+            'LMI_PAYMENT_DESC' => 'оплата за товар'
+        );
+        */
+
         $date = DateTime::createFromFormat('Ymd H:i:s', strval($post['LMI_SYS_TRANS_DATE']));
+        //$date = DateTime::createFromFormat('Ymd H:i:s', strval('20160507 20:00:00'));
+        //var_dump($date);
+
+        $data = array(
+            'PAYMENT_NO' => intval($post['LMI_PAYMENT_NO']),
+            'PAYMENT_AMOUNT' => floatval($post['LMI_PAYMENT_AMOUNT']),
+            'PAYEE_PURSE' => strval($post['LMI_PAYEE_PURSE']),
+            'SYS_TRANS_NO' => strval($post['LMI_SYS_TRANS_NO']),
+            'PAYER_PURSE' => strval($post['LMI_PAYER_PURSE']),
+            'PAYER_WM' => strval($post['LMI_PAYER_WM']),
+            'SYS_TRANS_DATE' => $date->format('Y-m-d H:i:s'),
+            'PAYMENT_DESC' => strval($post['LMI_PAYMENT_DESC'])
+        );
+
+
+        /*
         $wpdb->insert(
             $table_payments,
             array(
@@ -315,10 +343,18 @@ class DSeller {
                 'PAYER_PURSE' => strval($post['LMI_PAYER_PURSE']),
                 'PAYER_WM' => strval($post['LMI_PAYER_WM']),
                 'SYS_TRANS_DATE' => $date->format('Y-m-d H:i:s'),
-                'PAYMENT_DESC' => strval($post['LMI_PAYMENT_DESC']),
+                'PAYMENT_DESC' => strval($post['LMI_PAYMENT_DESC'])
             ),
-            array('%d', '%f', '%s', '%s', '%s', '%s', '%d', '%s')
+            array('%d', '%f', '%s', '%s', '%s', '%s', '%s', '%s')
         );
+        */
+        $wpdb->insert(
+            $table_payments,
+            $data,
+            array('%d', '%f', '%s', '%s', '%s', '%s', '%s', '%s')
+        );
+
+        //$wpdb->print_error();
 
     }
 
