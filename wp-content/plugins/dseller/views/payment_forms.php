@@ -7,11 +7,14 @@
 
 <img class="preloader" src="<?php echo plugins_url();?>/dseller/img/preloader.gif"/>
 
-<?php $product = $this->get_product($id);?>
+<?php
+    $product = $this->get_product($id);
+    $desc = 'Оплата за продукт ' . $product->name;
+?>
 
 <form name="wm_form" method="POST" action="https://merchant.webmoney.ru/lmi/payment.asp" accept-charset="windows-1251">
     <input type="hidden" name="LMI_PAYMENT_AMOUNT" value="<?php echo round(floatval($product->cost),2);?>">
-    <input type="hidden" name="LMI_PAYMENT_DESC" value="Payment for product <?php //echo $product->name;?>">
+    <input type="hidden" name="LMI_PAYMENT_DESC" value="<?php echo $desc;?>">
     <input type="hidden" name="LMI_PAYMENT_NO" value="<?php echo $this->get_payment_number();?>">
     <input type="hidden" name="LMI_PAYEE_PURSE" value="<?echo get_option('dseller_purse');?>">
     <input type="hidden" name="LMI_SIM_MODE" value="<?echo get_option('dseller_sim_mode');?>">

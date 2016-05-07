@@ -12,3 +12,11 @@
 {
     width: 100px;
 }
+
+img.preloader
+{
+    display: block;
+    width: 256px;
+    height: 20px;
+    margin: 200px auto 0 auto;
+}
