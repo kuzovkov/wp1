@@ -23,6 +23,7 @@
         $price = floatval($_POST['price']);
         $url = $_POST['url'];
         $desc = $_POST['description'];
+        $post_category = $_POST['post_category'];
         //var_dump($_POST);
         //var_dump($_FILES);
         if (isset($_FILES[$this->field_file_name])){
@@ -31,7 +32,7 @@
             }
         }
         $this->add_product($name, $price, $url, $desc);
-        $this->add_product_post();
+        $this->add_product_post($post_category);
 
     }
 
@@ -42,13 +43,14 @@
         $url = $_POST['url'];
         $id = intval($_POST['id']);
         $desc = $_POST['description'];
+        $post_category = $_POST['post_category'];
         if (isset($_FILES[$this->field_file_name])){
             if($filename = $this->upload_file($_FILES[$this->field_file_name])){
                 $url =  home_url() . '/' . get_option('dseller_dir') . '/' . $filename;
             }
         }
         $this->update_product($id, $name, $price, $url, $desc);
-        $this->update_product_post($id);
+        $this->update_product_post($id, $post_category);
 
     }
 

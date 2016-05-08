@@ -28,7 +28,6 @@ class DSeller {
 
     public $options = array(
         'dseller_dir' => 'upload', /*имя каталога загрузки товаров*/
-        'dseller_category' => 'digit_products', /*имя категории постов для описаний товаров*/
         'dseller_buy_url' => 'dseller_buy', /*URL обработчика кнопки "Купить"*/
         'dseller_download_url' => 'dseller_download', /*URL для загрузки оплаченного товара*/
         'dseller_link_timelive' => 10 /*время жизни ссылки для загрузки в днях*/
@@ -428,12 +427,12 @@ class DSeller {
     /**
      * добавляем пост с описанием товара
      */
-    public function add_product_post(){
+    public function add_product_post($post_category){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
         $row = $wpdb->get_row("SELECT MAX(id) AS id FROM $table_products");
         $product = $this->get_product(intval($row->id));
-        $category = get_category_by_slug( get_option('dseller_category') );
+        $category = get_category_by_slug( $post_category );
         $category_id = $category->cat_ID;
         $post_data = array(
             'post_title'    => wp_strip_all_tags( $product->name ),
@@ -456,11 +455,11 @@ class DSeller {
      * Обновление поста продукта при обновлении в админке
      * @param $id ID продукта
      */
-    public function update_product_post($id){
+    public function update_product_post($id, $post_category){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
         $product = $this->get_product($id);
-        $category = get_category_by_slug( get_option('dseller_category') );
+        $category = get_category_by_slug( $post_category );
         $category_id = $category->cat_ID;
         wp_delete_post($product->post_id);
         $post_data = array(
