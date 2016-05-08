@@ -320,6 +320,13 @@ class DSeller {
         $table_products = $wpdb->prefix . $this->table_product;
         $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $table_payments = $wpdb->prefix .$this->table_payments;
+        $products = $this->get_products();
+        if (is_array($products)){
+            foreach($products as $product){
+                $this->delete_product($product->id);
+            }
+        }
+
         $this->delete_options();
 
         $sql1 = "DROP TABLE IF EXISTS `". $table_products ."`;";
@@ -428,6 +435,34 @@ class DSeller {
         $product = $this->get_product(intval($row->id));
         $category = get_category_by_slug( get_option('dseller_category') );
         $category_id = $category->cat_ID;
+        $post_data = array(
+            'post_title'    => wp_strip_all_tags( $product->name ),
+            'post_content'  => $product->description . $this->get_buy_button($product),
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_category' => array( $category_id )
+        );
+        $post_id = wp_insert_post( $post_data );
+        $wpdb->update($table_products,
+            array('post_id' => $post_id),
+            array('id' => $product->id),
+            array('%s'),
+            array('%d')
+        );
+    }
+
+
+    /**
+     * Обновление поста продукта при обновлении в админке
+     * @param $id ID продукта
+     */
+    public function update_product_post($id){
+        global $wpdb;
+        $table_products = $wpdb->prefix . $this->table_product;
+        $product = $this->get_product($id);
+        $category = get_category_by_slug( get_option('dseller_category') );
+        $category_id = $category->cat_ID;
+        wp_delete_post($product->post_id);
         $post_data = array(
             'post_title'    => wp_strip_all_tags( $product->name ),
             'post_content'  => $product->description . $this->get_buy_button($product),

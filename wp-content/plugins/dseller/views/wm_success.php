@@ -14,7 +14,7 @@
     $link = home_url() . '/' . get_option('dseller_download_url') . '?dcode=' . $dcode;
 ?>
 
-<p>Ваша ссылка на скачивание: <?php echo $link; ?> (действительна <?php echo $timelive; ?> дней)</p>
+<p>Ваша ссылка на скачивание: <a href="<?php echo $link; ?>" target="_blank"><?php echo $link; ?></a> (действительна <?php echo $timelive; ?> дней)</p>
 <p><a href="<?php echo $curr_uri; ?>">Обратно на страницу товара</a></p>
 <?php require('_footer.php');?>
 </body>

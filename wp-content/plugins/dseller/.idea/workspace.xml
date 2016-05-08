@@ -22,35 +22,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dseller.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dseller.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dseller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3780">
-              <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
+            <state relative-caret-position="322">
+              <caret line="460" column="63" selection-start-line="460" selection-start-column="63" selection-end-line="460" selection-end-column="63" />
               <folding>
                 <element signature="e#6#199#0#PHP" expanded="true" />
-                <marker date="1462715936497" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-                <marker date="1462715936497" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-                <marker date="1462715936497" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
-                <marker date="1462715936497" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
-                <marker date="1462715936497" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
-                <marker date="1462715936497" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
-                <marker date="1462715936497" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
-                <marker date="1462715936497" expanded="true" signature="10752:10796" placeholder="DROP TABLE I... " />
-                <marker date="1462715936497" expanded="true" signature="10817:10866" placeholder="DROP TABLE I... " />
-                <marker date="1462715936497" expanded="true" signature="10887:10931" placeholder="DROP TABLE I... " />
-                <marker date="1462715936497" expanded="true" signature="12508:12522" placeholder="SELECT * FRO... ${$table_payments}" />
-                <marker date="1462715936497" expanded="true" signature="13585:13705" placeholder="..." />
-                <marker date="1462715936497" expanded="true" signature="14153:14179" placeholder="SELECT MAX(i... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="15324:15338" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="15324:15363" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="15324:15365" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="15615:15629" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="15615:15644" placeholder="SELECT * FRO... ${$table_products}" />
-                <marker date="1462715936497" expanded="true" signature="16415:16452" placeholder="DELETE FROM " />
-                <marker date="1462715936497" expanded="true" signature="16415:16494" placeholder="DELETE FROM " />
+                <marker date="1462741149952" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+                <marker date="1462741149952" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+                <marker date="1462741149952" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
+                <marker date="1462741149952" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
+                <marker date="1462741149952" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
+                <marker date="1462741149952" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
+                <marker date="1462741149952" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
+                <marker date="1462741149952" expanded="true" signature="10951:10995" placeholder="DROP TABLE I... " />
+                <marker date="1462741149952" expanded="true" signature="11016:11065" placeholder="DROP TABLE I... " />
+                <marker date="1462741149952" expanded="true" signature="11086:11130" placeholder="DROP TABLE I... " />
+                <marker date="1462741149952" expanded="true" signature="12707:12721" placeholder="SELECT * FRO... ${$table_payments}" />
+                <marker date="1462741149952" expanded="true" signature="13784:13904" placeholder="..." />
+                <marker date="1462741149952" expanded="true" signature="14352:14378" placeholder="SELECT MAX(i... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="16527:16541" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="16527:16566" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="16527:16568" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="16818:16832" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="16818:16847" placeholder="SELECT * FRO... ${$table_products}" />
+                <marker date="1462741149952" expanded="true" signature="17618:17655" placeholder="DELETE FROM " />
+                <marker date="1462741149952" expanded="true" signature="17618:17697" placeholder="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_handler.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/_handler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+              <folding>
+                <element signature="e#7#84#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,11 +88,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wm_success.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wm_success.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/wm_success.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products_page.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/products_page.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="59" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product_add_page.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/product_add_page.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -115,20 +147,20 @@
         <option value="$PROJECT_DIR$/views/main_page.php" />
         <option value="$PROJECT_DIR$/views/_footer.php" />
         <option value="$PROJECT_DIR$/views/_header.php" />
-        <option value="$PROJECT_DIR$/views/product_add_page.php" />
-        <option value="$PROJECT_DIR$/views/products_page.php" />
         <option value="$PROJECT_DIR$/views/settings_page.php" />
         <option value="$PROJECT_DIR$/views/wm_opt_page.php" />
         <option value="$PROJECT_DIR$/views/general_page.php" />
-        <option value="$PROJECT_DIR$/views/wm_success.php" />
         <option value="$PROJECT_DIR$/views/wm_fail.php" />
         <option value="$PROJECT_DIR$/views/link_fail.php" />
         <option value="$PROJECT_DIR$/views/payment_forms.php" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/views/payments_page.php" />
         <option value="$PROJECT_DIR$/views/_tinymce.php" />
-        <option value="$PROJECT_DIR$/dseller.php" />
+        <option value="$PROJECT_DIR$/views/products_page.php" />
+        <option value="$PROJECT_DIR$/views/product_add_page.php" />
+        <option value="$PROJECT_DIR$/views/wm_success.php" />
         <option value="$PROJECT_DIR$/views/_handler.php" />
+        <option value="$PROJECT_DIR$/dseller.php" />
       </list>
     </option>
   </component>
@@ -171,6 +203,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -219,7 +252,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -288,12 +320,13 @@
       <workItem from="1462615161748" duration="3009000" />
       <workItem from="1462630384818" duration="10693000" />
       <workItem from="1462652779065" duration="5488000" />
-      <workItem from="1462698808732" duration="12339000" />
+      <workItem from="1462698808732" duration="12651000" />
+      <workItem from="1462731827919" duration="9327000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120443000" />
+    <option name="totallyTimeSpent" value="130082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1032" extended-state="0" />
@@ -380,7 +413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -431,28 +463,28 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#199#0#PHP" expanded="true" />
-            <marker date="1462715936497" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
-            <marker date="1462715936497" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="10752:10796" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10817:10866" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10887:10931" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="12508:12522" placeholder="SELECT * FRO... ${$table_payments}" />
-            <marker date="1462715936497" expanded="true" signature="13585:13705" placeholder="..." />
-            <marker date="1462715936497" expanded="true" signature="14153:14179" placeholder="SELECT MAX(i... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15338" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15363" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15365" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15629" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15644" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="16415:16452" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="16415:16494" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
+            <marker date="1462741149952" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="10951:10995" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11016:11065" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11086:11130" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="12707:12721" placeholder="SELECT * FRO... ${$table_payments}" />
+            <marker date="1462741149952" expanded="true" signature="13784:13904" placeholder="..." />
+            <marker date="1462741149952" expanded="true" signature="14352:14378" placeholder="SELECT MAX(i... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16541" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16566" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16568" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16832" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16847" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="17618:17655" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="17618:17697" placeholder="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -482,7 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -533,28 +564,28 @@
           <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
           <folding>
             <element signature="e#6#199#0#PHP" expanded="true" />
-            <marker date="1462715936497" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
-            <marker date="1462715936497" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="10752:10796" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10817:10866" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10887:10931" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="12508:12522" placeholder="SELECT * FRO... ${$table_payments}" />
-            <marker date="1462715936497" expanded="true" signature="13585:13705" placeholder="..." />
-            <marker date="1462715936497" expanded="true" signature="14153:14179" placeholder="SELECT MAX(i... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15338" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15363" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15365" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15629" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15644" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="16415:16452" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="16415:16494" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
+            <marker date="1462741149952" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="10951:10995" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11016:11065" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11086:11130" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="12707:12721" placeholder="SELECT * FRO... ${$table_payments}" />
+            <marker date="1462741149952" expanded="true" signature="13784:13904" placeholder="..." />
+            <marker date="1462741149952" expanded="true" signature="14352:14378" placeholder="SELECT MAX(i... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16541" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16566" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16568" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16832" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16847" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="17618:17655" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="17618:17697" placeholder="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -571,7 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,28 +652,28 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#199#0#PHP" expanded="true" />
-            <marker date="1462715936497" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
-            <marker date="1462715936497" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="10752:10796" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10817:10866" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10887:10931" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="12508:12522" placeholder="SELECT * FRO... ${$table_payments}" />
-            <marker date="1462715936497" expanded="true" signature="13585:13705" placeholder="..." />
-            <marker date="1462715936497" expanded="true" signature="14153:14179" placeholder="SELECT MAX(i... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15338" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15363" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15365" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15629" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15644" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="16415:16452" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="16415:16494" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
+            <marker date="1462741149952" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="10951:10995" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11016:11065" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11086:11130" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="12707:12721" placeholder="SELECT * FRO... ${$table_payments}" />
+            <marker date="1462741149952" expanded="true" signature="13784:13904" placeholder="..." />
+            <marker date="1462741149952" expanded="true" signature="14352:14378" placeholder="SELECT MAX(i... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16541" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16566" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16568" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16832" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16847" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="17618:17655" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="17618:17697" placeholder="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -660,7 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,21 +719,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/_handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="20" />
-          <folding>
-            <element signature="e#7#84#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/general_page.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="98" selection-start-line="11" selection-start-column="98" selection-end-line="11" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -720,7 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="94" selection-start-line="5" selection-start-column="94" selection-end-line="5" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,7 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -736,39 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dseller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3780">
-          <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
-          <folding>
-            <element signature="e#6#199#0#PHP" expanded="true" />
-            <marker date="1462715936497" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
-            <marker date="1462715936497" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
-            <marker date="1462715936497" expanded="true" signature="10752:10796" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10817:10866" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="10887:10931" placeholder="DROP TABLE I... " />
-            <marker date="1462715936497" expanded="true" signature="12508:12522" placeholder="SELECT * FRO... ${$table_payments}" />
-            <marker date="1462715936497" expanded="true" signature="13585:13705" placeholder="..." />
-            <marker date="1462715936497" expanded="true" signature="14153:14179" placeholder="SELECT MAX(i... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15338" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15363" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15324:15365" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15629" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="15615:15644" placeholder="SELECT * FRO... ${$table_products}" />
-            <marker date="1462715936497" expanded="true" signature="16415:16452" placeholder="DELETE FROM " />
-            <marker date="1462715936497" expanded="true" signature="16415:16494" placeholder="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -799,30 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/product_add_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="164" selection-start-line="3" selection-start-column="162" selection-end-line="3" selection-end-column="182" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/products_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="68" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/settings_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/wm_fail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -841,9 +798,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/wm_success.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        <state relative-caret-position="240">
+          <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/products_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="59" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/settings_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/product_add_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/_handler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding>
+            <element signature="e#7#84#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dseller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="460" column="63" selection-start-line="460" selection-start-column="63" selection-end-line="460" selection-end-column="63" />
+          <folding>
+            <element signature="e#6#199#0#PHP" expanded="true" />
+            <marker date="1462741149952" expanded="true" signature="6394:6408" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6394:6453" placeholder="SELECT * FRO... ${$table_downloadcodes}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6667" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="6653:6668" placeholder="SELECT * FRO... $" />
+            <marker date="1462741149952" expanded="true" signature="6653:6696" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="7805:7854" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="8909:9231" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9253:9637" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="9659:10211" placeholder="CREATE TABLE... IF" />
+            <marker date="1462741149952" expanded="true" signature="10951:10995" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11016:11065" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="11086:11130" placeholder="DROP TABLE I... " />
+            <marker date="1462741149952" expanded="true" signature="12707:12721" placeholder="SELECT * FRO... ${$table_payments}" />
+            <marker date="1462741149952" expanded="true" signature="13784:13904" placeholder="..." />
+            <marker date="1462741149952" expanded="true" signature="14352:14378" placeholder="SELECT MAX(i... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16541" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16566" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16527:16568" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16832" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="16818:16847" placeholder="SELECT * FRO... ${$table_products}" />
+            <marker date="1462741149952" expanded="true" signature="17618:17655" placeholder="DELETE FROM " />
+            <marker date="1462741149952" expanded="true" signature="17618:17697" placeholder="DELETE FROM " />
+          </folding>
         </state>
       </provider>
     </entry>
