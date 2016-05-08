@@ -18,7 +18,7 @@ class DSeller {
         'dseller_fail_url' => 'dseller_wm_fail',
         'dseller_result_url' => 'dseller_wm_result',
         'dseller_secret_key' => 'Sekret_Merchant',
-        'dseller_sign' => 'md5',
+        'dseller_sign' => 'sha256',
         'dseller_success_method' => 'post',
         'dseller_fail_method' => 'post',
         'dseller_purse' => 'R425889686600',
@@ -27,17 +27,17 @@ class DSeller {
     );
 
     public $options = array(
-        'dseller_dir' => 'upload',
-        'dseller_category' => 'digit_products',
-        'dseller_buy_url' => 'dseller_buy',
-        'dseller_download_url' => 'dseller_download',
-        'dseller_link_timelive' => 10
+        'dseller_dir' => 'upload', /*имя каталога загрузки товаров*/
+        'dseller_category' => 'digit_products', /*имя категории постов для описаний товаров*/
+        'dseller_buy_url' => 'dseller_buy', /*URL обработчика кнопки "Купить"*/
+        'dseller_download_url' => 'dseller_download', /*URL для загрузки оплаченного товара*/
+        'dseller_link_timelive' => 10 /*время жизни ссылки для загрузки в днях*/
     );
 
-    public $table_product = 'dseller_products';
-    public $table_downloadcodes = 'dseller_downloadcodes';
-    public $table_payments = 'dseller_payments';
-    public $field_file_name = 'file';
+    public $table_product = 'dseller_products'; /*имя таблицы товаров*/
+    public $table_downloadcodes = 'dseller_downloadcodes'; /*имя таблицы кодов загрузки*/
+    public $table_payments = 'dseller_payments'; /*имя таблицы произведенных платежейs*/
+    public $field_file_name = 'file';/*имя поля загрузки файла формы добавления товара*/
     public $encode_in = 'windows-1251';
     public $encode_out = 'UTF-8//IGNORE';
 
@@ -51,21 +51,32 @@ class DSeller {
         register_deactivation_hook(__FILE__, array($this,'uninstall'));
     }
 
+    /**
+     * Создание пункта меню в админпанели
+     */
     public function add_admin_pages(){
         add_menu_page('DSeller Settings', 'DSeller', 8, 'dseller-opt', array($this,'show_settings_page'), plugins_url( 'dseller/img/webmoney.jpg' ));
     }
 
+    /**
+     * Старт сессии
+     */
     public function startSession() {
         if(!session_id()) {
             session_start();
         }
     }
 
+    /**
+     * Удаление сессии
+     */
     public function endSession() {
         session_destroy ();
     }
 
-
+    /**
+     * Обработчик входящих запросов
+     */
     public function run(){
         $this->startSession();
         $real_uri = $_SERVER['REQUEST_URI'];
@@ -109,6 +120,9 @@ class DSeller {
         }
     }
 
+    /**
+     * Проверка данных переданных системой WebMoney в оповещении о платеже
+     */
     public function wm_check_result(){
         $result = $_POST['LMI_PAYEE_PURSE'].$_POST['LMI_PAYMENT_AMOUNT'].$_POST['LMI_PAYMENT_NO'].$_POST['LMI_MODE'].$_POST['LMI_SYS_INVS_NO'].$_POST['LMI_SYS_TRANS_NO'].$_POST['LMI_SYS_TRANS_DATE'].get_option('dseller_secret_key').$_POST['LMI_PAYER_PURSE'].$_POST['LMI_PAYER_WM'];
         $hash = strtoupper(hash(get_option('dseller_sign'), $result));
@@ -116,14 +130,25 @@ class DSeller {
     }
 
 
+    /**
+     * Поках пользователю страницы успешного платежа
+     * @param $arr массив POST или GET от системы WebMoney
+     */
     public function show_wm_success($arr){
         include('views/wm_success.php');
     }
 
+    /**
+     * Поках пользователю страницы неуспешного платежа
+     * @param $arr массив POST или GET от системы WebMoney
+     */
     public function show_wm_fail($arr){
         include('views/wm_fail.php');
     }
 
+    /**
+     * Поках пользователю страницы с сообщением что ссылка на скачивание не активна
+     */
     public function show_link_fail(){
         include('views/link_fail.php');
     }
@@ -216,7 +241,7 @@ class DSeller {
 
     /**
      * проверка получены ли данные от формы
-     * @param $name имя параметра POST коорый должен быть
+     * @param $name имя параметра POST который должен быть
      * @return bool
      */
     public function is_form_submited($name){
@@ -234,6 +259,10 @@ class DSeller {
         return false;
     }
 
+    /**
+     * Метод вызываемый при активации плагина
+     * Создание таблиц в базе данных и сохранение опций по умолчанию
+     */
     public function install(){
         global $wpdb;
 
@@ -282,6 +311,10 @@ class DSeller {
         $wpdb->query($sql3);
     }
 
+    /**
+     * Метод вызываемый при деактивации плагина
+     * Удаление таблиц в базе данных и сохранение опций по умолчанию
+     */
     public function uninstall(){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
@@ -299,6 +332,10 @@ class DSeller {
     }
 
 
+    /**
+     * Добавление в базу данных информации о проведенном пользователем платеже
+     * @param $post Массив POST от системы WebMoney при оповещении о платеже
+     */
     public function add_payment($post){
         global $wpdb;
         $table_payments = $wpdb->prefix .$this->table_payments;
@@ -322,13 +359,21 @@ class DSeller {
     }
 
 
+    /**
+     * Получение из базы данных информации о проведенных платежах
+     * @return mixed
+     */
     public function get_payments(){
         global $wpdb;
         $table_payments = $wpdb->prefix .$this->table_payments;
         $payments = $wpdb->get_results("SELECT * FROM $table_payments");
         return $payments;
     }
-    
+
+    /**
+     * Добавление в базу данных кода на скачивание при успешном проведении платежа
+     * @param $post Массив POST от системы WebMoney при оповещении о платеже
+     */
     public function add_download_code($post){
         $dcode = $_POST['DCODE'];
         $ctime = time();
@@ -363,6 +408,11 @@ class DSeller {
         return $form;
     }
 
+
+    /**
+     * Отправка запроса на проведение платежа
+     * @param $id ID выбранного товара
+     */
     public function send_payment_request($id){
         require('views/payment_forms.php');
     }
@@ -440,7 +490,12 @@ class DSeller {
             array('%s', '%s', '%s', '%s')
         );
     }
-    
+
+
+    /**
+     * Удаление товара из базы
+     * @param $id ID товара
+     */
     public function delete_product($id){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
@@ -451,6 +506,15 @@ class DSeller {
         wp_delete_post($post_id);
     }
 
+
+    /**
+     * Обновление данных о товаре в базе данных
+     * @param $id
+     * @param $name
+     * @param $price
+     * @param $url
+     * @param $desc
+     */
     public function update_product($id, $name, $price, $url, $desc){
         global $wpdb;
         $table_products = $wpdb->prefix . $this->table_product;
@@ -463,6 +527,10 @@ class DSeller {
         $this->delete_lost_files();
     }
 
+
+    /**
+     * Удаление файлов в каталоге загрузки, ссылок на которые нет в таблице товаров
+     */
     public function delete_lost_files(){
         $products = $this->get_products();
         $files = array();
@@ -480,6 +548,12 @@ class DSeller {
 
     }
 
+
+    /**
+     * Загрузка файла цифрового товара в каталог загрузки
+     * @param $files подмассив массива $_FILES, содержащий данные по загруженному файлу
+     * @return bool
+     */
     public function upload_file($files){
         if (isset($files['error']) && $files['error'] == 0){
             if ($this->check_upload_dir()){
@@ -490,6 +564,11 @@ class DSeller {
         }
     }
 
+
+    /**
+     * Проверка существования каталога загрузки и при отсутствии создание его
+     * @return bool
+     */
     public function check_upload_dir(){
         $upload_dir = ABSPATH . get_option('dseller_dir');
         if (file_exists($upload_dir) && is_dir($upload_dir)){
@@ -499,6 +578,12 @@ class DSeller {
         }
     }
 
+
+    /**
+     * Генерация рандомной текстовой строки
+     * @param $n длина строки
+     * @return string
+     */
     public function random_string($n){
         $str = 'wertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
         $arr = str_split($str);
@@ -510,12 +595,6 @@ class DSeller {
         return $pass;
     }
 
-    public function change_content($content){
-
-    }
-
-
-    
 }
 
 

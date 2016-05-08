@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Обработчики форм для добавления, редактирования и удаления товаров
+ */
     if ($this->is_form_submited('dseller_wm_opt_btn')){
         foreach($this->wm_options as $key => $val){
             update_option($key, $_POST[$key]);
@@ -34,7 +37,7 @@
         $name = $_POST['name'];
         $price = $_POST['price'];
         $url = $_POST['url'];
-        $id = $_POST['id'];
+        $id = intval($_POST['id']);
         $desc = $_POST['description'];
         $this->update_product($id, $name, $price, $url, $desc);
     }
