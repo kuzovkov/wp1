@@ -8,7 +8,7 @@
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
                 "table contextmenu directionality emoticons template textcolor paste textcolor"
             ],
-            //image_list: [ {% render '/admin/getimagelist' %} ],
+            image_list: <?php echo getImages();?>,
             toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
                 toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | inserttime preview | forecolor backcolor",
                 toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
@@ -35,3 +35,50 @@
     }
     
 </script>
+
+<?php
+
+    /**
+     * Возвращает расширение файла
+     * @param $filename
+     * @return string
+     */
+    function getExt($filename){
+        return substr($filename, strrpos($filename, '.') + 1);
+    }
+
+    /**
+     * Возвращает JSON строку, содержащую данные по изображениям
+     * в каталоге загрузки WordPress
+     * @param null $dir начальный каталог поиска изображений
+     * @return string
+     */
+    function getImages($dir = null){
+        static $imageList = array();
+        static $count = 0;
+        $uploads = wp_get_upload_dir();
+        $basedir = $uploads['basedir'];
+        $baseurl = $uploads['baseurl'];
+        if ($dir == null) $dir = $basedir;
+        $exts = array('jpg', 'jpeg', 'png', 'gif');
+        $fileList = scandir($dir);
+        if (is_array($fileList)){
+            foreach($fileList as $filename){
+                if ($filename == '.' || $filename == '..') continue;
+                if (is_dir($dir . '/' . $filename)){
+                    getImages($dir . '/' . $filename);
+                }else{
+                    if (in_array(getExt($filename), $exts)){
+                        $prefix = '';
+                        while (isset($imageList[$prefix . $filename])) $prefix .= '_';
+                        $imageList[$count]['title'] = $filename;
+                        $imageList[$count]['value'] = $baseurl . '/' . substr($dir, strlen($basedir)) . '/' . $filename;
+                        $count++;
+                    }
+                }
+            }
+        }
+        return json_encode($imageList, JSON_UNESCAPED_SLASHES);
+    }
+
+?>
