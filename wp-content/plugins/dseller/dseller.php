@@ -27,7 +27,7 @@ class DSeller {
     );
 
     public $rk_options = array(
-        'dseller_rk_shop_id' => 'VideoService',
+        'dseller_rk_shop_id' => 'blog-cook',
         'dseller_rk_sign' => 'sha256',
         'dseller_rk_success_url' => 'dseller_rk_success',
         'dseller_rk_fail_url' => 'dseller_rk_fail',
@@ -105,7 +105,7 @@ class DSeller {
         }else{
             $uri = substr($real_uri, 1, strpos($real_uri, '?') - 1);
         }
-
+        
         if ($uri == get_option('dseller_buy_url')){
             $id = (isset($_POST['id']))? intval($_POST['id']) : null;
             if ($id !== null){
@@ -141,6 +141,7 @@ class DSeller {
             if ($this->rk_check_result()) {
                 $this->add_download_code($arr);
                 $this->add_payment_rk($arr);
+                echo 'OK' . $arr['InvId'];
             }
             exit();
         }elseif($uri == get_option('dseller_download_url')){

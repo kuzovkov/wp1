@@ -10,7 +10,7 @@
 <?php
 $timelive = get_option('dseller_link_timelive');
 $dcode = $arr['Shp_dcode'];
-$curr_uri = $arr['Shp_product_id'];
+$curr_uri = $arr['Shp_curr_url'];
 $link = home_url() . '/' . get_option('dseller_download_url') . '?dcode=' . $dcode;
 ?>
 

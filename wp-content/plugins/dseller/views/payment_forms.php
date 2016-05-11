@@ -18,7 +18,7 @@
 $mrh_login = get_option('dseller_rk_shop_id');
 $is_test = intval(get_option('dseller_rk_istest'));
 
-$mrh_pass1 = ($is_test == 0)? get_option('dseller_rk_pass1') : get_option('dseller_testpass1');
+$mrh_pass1 = ($is_test == 0)? get_option('dseller_rk_pass1') : get_option('dseller_rk_testpass1');
 
 // номер заказа
 // number of order
@@ -57,7 +57,7 @@ $crc  = hash(get_option('dseller_rk_sign'), "$mrh_login:$out_summ:$inv_id:$mrh_p
 
 <form name="rk_form" action='https://auth.robokassa.ru/Merchant/Index.aspx' method=POST>"
     <input type="hidden" name="MrchLogin" value="<?php echo $mrh_login;?>">
-    <input type="hidden" name="OutSum value"="<?php echo $out_summ;?>">
+    <input type="hidden" name="OutSum" value="<?php echo $out_summ;?>">
     <input type="hidden" name="InvId" value="<?php echo $inv_id;?>">
     <input type="hidden" name="Desc" value="<?php echo $inv_desc;?>">
     <input type="hidden" name="SignatureValue" value="<?php echo $crc;?>">
