@@ -3,6 +3,11 @@
     width: 500px;
 }
 
+.opt-form input#istest
+{
+    width: inherit;
+}
+
 .opt-form textarea
 {
     width: 500px;

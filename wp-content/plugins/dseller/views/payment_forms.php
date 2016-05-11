@@ -16,7 +16,9 @@
 // регистрационная информация (Идентификатор магазина, пароль #1)
 // registration info (Merchant ID, password #1)
 $mrh_login = get_option('dseller_rk_shop_id');
-$mrh_pass1 = get_option('dseller_rk_pass1');
+$is_test = intval(get_option('dseller_rk_istest'));
+
+$mrh_pass1 = ($is_test == 0)? get_option('dseller_rk_pass1') : get_option('dseller_testpass1');
 
 // номер заказа
 // number of order
@@ -48,18 +50,22 @@ $shp_product_id = $product->id;
 
 // формирование подписи
 // generate signature
-$crc  = hash(get_option('dseller_rk_sign'), "$mrh_login:$out_summ:$inv_id:$OutSumCurrency:$mrh_pass1:Shp_curr_url=$shp_curr_url:Shp_dcode=$shp_dcode:Shp_product_id=$shp_product_id");
+$crc  = hash(get_option('dseller_rk_sign'), "$mrh_login:$out_summ:$inv_id:$mrh_pass1:Shp_curr_url=$shp_curr_url:Shp_dcode=$shp_dcode:Shp_product_id=$shp_product_id");
 
 ?>
 <!-- Robokassa -->
 
 <form name="rk_form" action='https://auth.robokassa.ru/Merchant/Index.aspx' method=POST>"
-    <input type=hidden name=MrchLogin value="<?php echo $mrh_login;?>">
-    <input type=hidden name=OutSum value="<?php echo $out_summ;?>">
-    <input type=hidden name=InvId value="<?php echo $inv_id;?>">
-    <input type=hidden name=Desc value="<?php echo $inv_desc;?>">
-    <input type=hidden name=SignatureValue value="<?php echo $crc;?>">
-    <input type=hidden name=Culture value="<?php echo $culture;?>">
+    <input type="hidden" name="MrchLogin" value="<?php echo $mrh_login;?>">
+    <input type="hidden" name="OutSum value"="<?php echo $out_summ;?>">
+    <input type="hidden" name="InvId" value="<?php echo $inv_id;?>">
+    <input type="hidden" name="Desc" value="<?php echo $inv_desc;?>">
+    <input type="hidden" name="SignatureValue" value="<?php echo $crc;?>">
+    <input type="hidden" name="Culture" value="<?php echo $culture;?>">
+    <input type="hidden" name="IsTest" value="<?php echo $is_test;?>">
+    <input type="hidden" name="Shp_curr_url" value="<?php echo $shp_curr_url;?>">
+    <input type="hidden" name="Shp_dcode" value="<?php echo $shp_dcode;?>">
+    <input type="hidden" name="Shp_product_id" value="<?php echo $shp_product_id;?>">
 
     <!--<input type=hidden name=OutSumCurrency value=$OutSumCurrency>-->
 </form>

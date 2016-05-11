@@ -39,7 +39,8 @@ class DSeller {
         'dseller_rk_pass2' => 'Passw0rd2',
         'dseller_rk_testpass1' => 'tPassw0rd1',
         'dseller_rk_testpass2' => 'tPassw0rd2',
-        'dseller_rk_testsign' => 'sha256'
+        'dseller_rk_testsign' => 'sha256',
+        'dseller_rk_istest' => 1
 
     );
 
@@ -54,6 +55,7 @@ class DSeller {
     public $table_product = 'dseller_products'; /*имя таблицы товаров*/
     public $table_downloadcodes = 'dseller_downloadcodes'; /*имя таблицы кодов загрузки*/
     public $table_payments = 'dseller_payments'; /*имя таблицы произведенных платежей*/
+    public $table_payments_rk = 'dseller_payments_rk'; /*имя таблицы произведенных платежей через robokassa*/
     public $field_file_name = 'file';/*имя поля загрузки файла формы добавления товара*/
     public $encode_in = 'windows-1251';
     public $encode_out = 'UTF-8//IGNORE';
@@ -126,6 +128,21 @@ class DSeller {
                 $this->add_payment($_POST);
             }
             exit();
+        }elseif ($uri == get_option('dseller_rk_success_url')){
+            $arr = (isset($_POST['InvId']))? $_POST : $_GET;
+            $this->show_rk_success($arr);
+            exit();
+        }elseif ($uri == get_option('dseller_rk_fail_url')){
+            $arr = (isset($_POST['InvId']))? $_POST : $_GET;
+            $this->show_rk_fail($arr);
+            exit();
+        }elseif ($uri == get_option('dseller_rk_result_url')){
+            $arr = (isset($_POST['InvId']))? $_POST : $_GET;
+            if ($this->rk_check_result()) {
+                $this->add_download_code($arr);
+                $this->add_payment_rk($arr);
+            }
+            exit();
         }elseif($uri == get_option('dseller_download_url')){
             $this->start_download();
             exit();
@@ -141,9 +158,37 @@ class DSeller {
      * Проверка данных переданных системой WebMoney в оповещении о платеже
      */
     public function wm_check_result(){
-        $result = $_POST['LMI_PAYEE_PURSE'].$_POST['LMI_PAYMENT_AMOUNT'].$_POST['LMI_PAYMENT_NO'].$_POST['LMI_MODE'].$_POST['LMI_SYS_INVS_NO'].$_POST['LMI_SYS_TRANS_NO'].$_POST['LMI_SYS_TRANS_DATE'].get_option('dseller_secret_key').$_POST['LMI_PAYER_PURSE'].$_POST['LMI_PAYER_WM'];
+        $result = implode(array(
+            $_POST['LMI_PAYEE_PURSE'],
+            $_POST['LMI_PAYMENT_AMOUNT'],
+            $_POST['LMI_PAYMENT_NO'],
+            $_POST['LMI_MODE'],
+            $_POST['LMI_SYS_INVS_NO'],
+            $_POST['LMI_SYS_TRANS_NO'],
+            $_POST['LMI_SYS_TRANS_DATE'],
+            get_option('dseller_secret_key'),
+            $_POST['LMI_PAYER_PURSE'],
+            $_POST['LMI_PAYER_WM']
+        ));
         $hash = strtoupper(hash(get_option('dseller_sign'), $result));
         return ($_POST['LMI_HASH'] == $hash)? true : false;
+    }
+
+    /**
+     * Проверка данных переданных системой Robokassa в оповещении о платеже
+     */
+    public function rk_check_result(){
+        $pass = (intval(get_option('dseller_rk_istest')) == 1)? get_option('dseller_rk_testpass2') : get_option('dseller_rk_pass2');
+        $result = implode(':', array(
+            $_REQUEST['OutSum'],
+            $_REQUEST['InvId'],
+            $pass,
+            'Shp_curr_url='.$_REQUEST['Shp_curr_url'],
+            'Shp_dcode='.$_REQUEST['Shp_dcode'],
+            'Shp_product_id='.$_REQUEST['Shp_product_id']
+        ));
+        $hash = strtoupper(hash(get_option('dseller_rk_sign'), $result));
+        return (strtoupper($_REQUEST['SignatureValue']) == $hash)? true : false;
     }
 
 
@@ -161,6 +206,22 @@ class DSeller {
      */
     public function show_wm_fail($arr){
         include('views/wm_fail.php');
+    }
+
+    /**
+     * Поках пользователю страницы успешного платежа
+     * @param $arr массив POST или GET от системы Robokassa
+     */
+    public function show_rk_success($arr){
+        include('views/rk_success.php');
+    }
+
+    /**
+     * Поках пользователю страницы неуспешного платежа
+     * @param $arr массив POST или GET от системы Robokassa
+     */
+    public function show_rk_fail($arr){
+        include('views/rk_fail.php');
     }
 
     /**
@@ -296,6 +357,7 @@ class DSeller {
         $table_products = $wpdb->prefix . $this->table_product;
         $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $table_payments = $wpdb->prefix .$this->table_payments;
+        $table_payments_rk = $wpdb->prefix .$this->table_payments_rk;
 
             $sql1 = "CREATE TABLE IF NOT EXISTS `". $table_downloadcodes ."` 
         (
@@ -331,9 +393,20 @@ class DSeller {
             PRIMARY KEY (`id`)
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
+        $sql4 = "CREATE TABLE IF NOT EXISTS `". $table_payments_rk ."` 
+        (
+            `id` INT(10) NOT NULL AUTO_INCREMENT,
+            `PAYMENT_NO` int(12) NOT NULL,
+            `PAYMENT_AMOUNT` FLOAT(10),
+            `Product_id` INT(12) NOT NULL,
+            `Payment_date` DATETIME NOT NULL,
+            PRIMARY KEY (`id`)
+        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
         $wpdb->query($sql1);
         $wpdb->query($sql2);
         $wpdb->query($sql3);
+        $wpdb->query($sql4);
     }
 
     /**
@@ -345,6 +418,8 @@ class DSeller {
         $table_products = $wpdb->prefix . $this->table_product;
         $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $table_payments = $wpdb->prefix .$this->table_payments;
+        $table_payments_rk = $wpdb->prefix .$this->table_payments_rk;
+
         $products = $this->get_products();
         if (is_array($products)){
             foreach($products as $product){
@@ -357,10 +432,12 @@ class DSeller {
         $sql1 = "DROP TABLE IF EXISTS `". $table_products ."`;";
         $sql2 = "DROP TABLE IF EXISTS `". $table_downloadcodes ."`;";
         $sql3 = "DROP TABLE IF EXISTS `". $table_payments ."`;";
+        $sql4 = "DROP TABLE IF EXISTS `". $table_payments_rk ."`;";
 
         $wpdb->query($sql1);
         $wpdb->query($sql2);
         $wpdb->query($sql3);
+        $wpdb->query($sql4);
     }
 
 
@@ -392,6 +469,30 @@ class DSeller {
 
 
     /**
+     * Добавление в базу данных информации о проведенном пользователем платеже
+     * через robokassa
+     * @param $req Массив POST или GET от системы Robokassa при оповещении о платеже
+     */
+    public function add_payment_rk($req){
+        global $wpdb;
+        $table_payments = $wpdb->prefix .$this->table_payments_rk;
+        //file_put_contents('mydebug.txt', print_r($post, true));
+        $date = new DateTime();
+
+        $wpdb->insert(
+            $table_payments,
+            array(
+                'PAYMENT_NO' => intval($req['InvId']),
+                'PAYMENT_AMOUNT' => floatval($req['OutSum']),
+                'Product_id' => intval($req['Shp_product_id']),
+                'Payment_date' => $date->format('Y-m-d H:i:s')
+            ),
+            array('%d', '%f', '%d', '%s')
+        );
+    }
+
+
+    /**
      * Получение из базы данных информации о проведенных платежах
      * @return mixed
      */
@@ -401,15 +502,26 @@ class DSeller {
         $payments = $wpdb->get_results("SELECT * FROM $table_payments");
         return $payments;
     }
+    /**
+     * Получение из базы данных информации о проведенных платежах
+     * через robokassa
+     * @return mixed
+     */
+    public function get_payments_rk(){
+        global $wpdb;
+        $table_payments_rk = $wpdb->prefix .$this->table_payments_rk;
+        $payments = $wpdb->get_results("SELECT * FROM $table_payments_rk");
+        return $payments;
+    }
 
     /**
      * Добавление в базу данных кода на скачивание при успешном проведении платежа
      * @param $post Массив POST от системы WebMoney при оповещении о платеже
      */
     public function add_download_code($post){
-        $dcode = $_POST['DCODE'];
+        $dcode = (isset($_POST['DCODE']))? $_POST['DCODE'] : $_REQUEST['Shp_dcode'];
         $ctime = time();
-        $product_id = $_POST['PRODUCT_ID'];
+        $product_id = (isset($_POST['PRODUCT_ID']))? $_POST['PRODUCT_ID'] : $_REQUEST['Shp_product_id'];
         global $wpdb;
         $table_downloadcodes = $wpdb->prefix . $this->table_downloadcodes;
         $wpdb->insert(

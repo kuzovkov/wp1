@@ -10,6 +10,18 @@
         }
     }
 
+    /*Обновление опций Robokassa*/
+    if ($this->is_form_submited('dseller_rk_opt_btn')){
+        foreach($this->rk_options as $key => $val){
+            update_option($key, $_POST[$key]);
+        }
+        
+        update_option('dseller_rk_istest', 0);
+        if (isset($_POST['dseller_rk_istest']) && $_POST['dseller_rk_istest'] == 'on'){
+            update_option('dseller_rk_istest', 1);
+        }
+    }
+
     /*Обновление основных опций*/
     if ($this->is_form_submited('dseller_mainopt_btn')){
         foreach($this->options as $key => $val){

@@ -5527,3 +5527,4 @@
 [08-May-2016 11:21:13 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/blog-cook/wp-content/plugins/dseller/views/_tinymce.php on line 63
 [08-May-2016 11:21:13 UTC] PHP Warning:  in_array() expects parameter 2 to be array, null given in /var/www/blog-cook/wp-content/plugins/dseller/views/_tinymce.php on line 63
 [08-May-2016 11:26:24 UTC] PHP Warning:  scandir(): Directory name cannot be empty in /var/www/blog-cook/wp-content/plugins/dseller/views/_tinymce.php on line 51
+[11-May-2016 19:40:34 UTC] База данных WordPress возвратила ошибку Table 'blog_cook.wp_dseller_payments_rk' doesn't exist в ответ на запрос SELECT * FROM wp_dseller_payments_rk, выполненный do_action('toplevel_page_dseller-opt'), call_user_func_array, DSeller->show_settings_page, require('/plugins/dseller/views/settings_page.php'), require('/plugins/dseller/views/payments_rk_page.php'), DSeller->get_payments_rk

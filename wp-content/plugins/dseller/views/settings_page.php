@@ -10,6 +10,7 @@
         <li role="presentation"><a href="#add_product" aria-controls="messages" role="tab" data-toggle="tab">Добавить товар</a></li>
         <li role="presentation"><a href="#list_products" aria-controls="settings" role="tab" data-toggle="tab">Список товаров</a></li>
         <li role="presentation"><a href="#payments" aria-controls="settings" role="tab" data-toggle="tab">Платежи</a></li>
+        <li role="presentation"><a href="#payments_rk" aria-controls="settings" role="tab" data-toggle="tab">Платежи Robokassa</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -20,6 +21,7 @@
         <div role="tabpanel" class="tab-pane" id="add_product"><?php require('product_add_page.php');?></div>
         <div role="tabpanel" class="tab-pane" id="list_products"><?php require('products_page.php');?></div>
         <div role="tabpanel" class="tab-pane" id="payments"><?php require('payments_page.php');?></div>
+        <div role="tabpanel" class="tab-pane" id="payments_rk"><?php require('payments_rk_page.php');?></div>
     </div>
 
 </div>

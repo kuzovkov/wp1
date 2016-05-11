@@ -42,6 +42,6 @@
     </div>
     <div class="form-group"><label for="tpass1">Пароль #1:</label><input id="tpass1" class="form-control" name="dseller_rk_testpass1" value="<?php echo get_option("dseller_rk_testpass1")?>"/></div>
     <div class="form-group"><label for="tpass2">Пароль #2:</label><input class="form-control" id="tpass2" name="dseller_rk_testpass2" value="<?php echo get_option("dseller_rk_testpass2")?>"/></div>
-
+    <div class="form-group"><label for="istest">Тестовый режим: </label> <input id="istest"  type="checkbox" class="form-control" name="dseller_rk_istest" <?php echo (intval(get_option("dseller_rk_istest")) == 1)? 'checked' : ''; ?>/></div>
     <button name="dseller_rk_opt_btn" type="submit" class="btn btn-default">Сохранить</button>
 </form>
