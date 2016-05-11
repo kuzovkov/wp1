@@ -26,16 +26,34 @@ class DSeller {
 
     );
 
+    public $rk_options = array(
+        'dseller_rk_shop_id' => 'VideoService',
+        'dseller_rk_sign' => 'sha256',
+        'dseller_rk_success_url' => 'dseller_rk_success',
+        'dseller_rk_fail_url' => 'dseller_rk_fail',
+        'dseller_rk_result_url' => 'dseller_rk_result',
+        'dseller_rk_success_method' => 'post',
+        'dseller_rk_fail_method' => 'post',
+        'dseller_rk_result_method' => 'post',
+        'dseller_rk_pass1' => 'Passw0rd1',
+        'dseller_rk_pass2' => 'Passw0rd2',
+        'dseller_rk_testpass1' => 'tPassw0rd1',
+        'dseller_rk_testpass2' => 'tPassw0rd2',
+        'dseller_rk_testsign' => 'sha256'
+
+    );
+
     public $options = array(
         'dseller_dir' => 'upload', /*имя каталога загрузки товаров*/
         'dseller_buy_url' => 'dseller_buy', /*URL обработчика кнопки "Купить"*/
         'dseller_download_url' => 'dseller_download', /*URL для загрузки оплаченного товара*/
-        'dseller_link_timelive' => 10 /*время жизни ссылки для загрузки в днях*/
+        'dseller_link_timelive' => 10,/*время жизни ссылки для загрузки в днях*/
+        'dseller_payment_system' => 'wm'
     );
 
     public $table_product = 'dseller_products'; /*имя таблицы товаров*/
     public $table_downloadcodes = 'dseller_downloadcodes'; /*имя таблицы кодов загрузки*/
-    public $table_payments = 'dseller_payments'; /*имя таблицы произведенных платежейs*/
+    public $table_payments = 'dseller_payments'; /*имя таблицы произведенных платежей*/
     public $field_file_name = 'file';/*имя поля загрузки файла формы добавления товара*/
     public $encode_in = 'windows-1251';
     public $encode_out = 'UTF-8//IGNORE';
@@ -164,6 +182,10 @@ class DSeller {
         foreach($this->wm_options as $key => $val){
             add_option($key, $val);
         }
+
+        foreach($this->rk_options as $key => $val){
+            add_option($key, $val);
+        }
     }
 
     /**
@@ -175,6 +197,10 @@ class DSeller {
         }
 
         foreach($this->wm_options as $key => $val){
+            delete_option($key, $val);
+        }
+
+        foreach($this->rk_options as $key => $val){
             delete_option($key, $val);
         }
     }
