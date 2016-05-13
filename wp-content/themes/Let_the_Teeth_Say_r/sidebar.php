@@ -4,8 +4,9 @@
             <div id="searchform"><?php include(TEMPLATEPATH . '/searchform.php'); ?></div>
 			<div id="sidebar_main" class="clearfix">
             <ul>
+            
             <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('sidebar1') ) : ?>
-                <li>
+               <li>
                     <h2>Рубрики</h2>
                     <div class="sidebar_icon"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/sidebar_icon.jpg" /></div>
                     <ul>

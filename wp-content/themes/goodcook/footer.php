@@ -3,7 +3,7 @@
     <div class="padding">
         <div class="main">
             <div class="wrapper">
-                <div class="fleft footer-text"> Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved <strong> Design by <a target="_blank" href="http://www.templatemonster.com/">TemplateMonster.com</a></strong>
+                <div class="fleft footer-text"> <strong>Copyright &copy; goodcook, 2016</strong>
                     <!-- {%FOOTER_LINK} -->
                 </div>
                 <ul class="list-services">
@@ -31,5 +31,10 @@
         });
     });
 </script>
+<script type="text/javascript">
+    $('.alignleft > a').addClass('button-2');
+    $('.alignright > a').addClass('button-2');
+</script>
+<?php wp_footer();?>
 </body>
 </html>

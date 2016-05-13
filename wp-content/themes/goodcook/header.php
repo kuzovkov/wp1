@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>GoodCook</title>
+    <title><?php echo bloginfo('title');?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/layout.css" type="text/css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Adamina' rel='stylesheet' type='text/css'>
@@ -23,8 +24,9 @@
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory');?>/js/html5.js"></script>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/css/ie.css" type="text/css" media="screen">
     <![endif]-->
+    <?php wp_head();?>
 </head>
-<body id="page1">
+<body id="page<?php echo (is_front_page())? 1:4; ?>">
 <div id="bgSlider"></div>
 <div class="bg_spinner"></div>
 <div class="extra">
@@ -33,7 +35,7 @@
         <div class="top-row">
             <div class="main">
                 <div class="wrapper">
-                    <h1><a href="index.html">GoodCook</a></h1>
+                    <h1><a href="<?php echo home_url();?>"><?php echo bloginfo('title');?></a></h1>
                     <ul class="pagination">
                         <li class="current"><a href="<?php bloginfo('stylesheet_directory');?>/images/bg-img1.jpg">1</a></li>
                         <li><a href="<?php bloginfo('stylesheet_directory');?>/images/bg-img2.jpg">2</a></li>
@@ -46,6 +48,7 @@
             <div class="menu-border">
                 <div class="main">
                     <nav>
+                        <!--
                         <ul class="menu">
                             <li><a class="active" href="index.html">Main</a></li>
                             <li><a href="about.html">About Us</a></li>
@@ -53,7 +56,23 @@
                             <li><a href="recipes.html">New Recipes</a></li>
                             <li><a href="calendar.html">Calendar</a></li>
                             <li class="last"><a href="contacts.html">Contacts</a></li>
-                        </ul>
+                        </ul>-->
+
+                        <?php
+                            if(function_exists('wp_nav_menu')){
+                                $menu = wp_nav_menu(
+                                    array(
+                                        'theme_location' => 'custom_menu',
+                                        'container' => 'ul',
+                                        'echo' => 0
+                                    )
+                                );
+                                $menu = preg_replace('~<li~', '<li><a href="/">Главная</a></li><li', $menu, 1 );
+                                echo $menu;
+                            }else{
+                                custom_menu();
+                            }
+                        ?>
                     </nav>
                 </div>
             </div>

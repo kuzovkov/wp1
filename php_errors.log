@@ -31,3 +31,7 @@
 [07-May-2016 16:53:05 UTC] База данных WordPress возвратила ошибку  в ответ на запрос INSERT INTO `wp_dseller_payments` (`PAYMENT_NO`, `PAYMENT_AMOUNT`, `PAYEE_PURSE`, `SYS_TRANS_NO`, `PAYER_PURSE`, `PAYER_WM`, `SYS_TRANS_DATE`, `PAYMENT_DESC`) VALUES (1462637059, 0.500000, 'R425889686600', '1323151733', 'R893994447637', '849369644076', '2016-05-07 20:00:00', 'оплата за товар'), выполненный require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), call_user_func_array, DSeller->run, DSeller->add_payment
 [07-May-2016 17:06:10 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /var/www/blog-cook/wp-content/plugins/dseller/dseller.php on line 330
 [07-May-2016 20:25:43 UTC] PHP Fatal error:  Call to a member function format() on a non-object in /var/www/blog-cook/wp-content/plugins/dseller/dseller.php on line 330
+[13-May-2016 18:31:49 UTC] PHP Fatal error:  Call to undefined function bookmark() in /var/www/blog-cook/wp-content/themes/goodcook/single.php on line 24
+[13-May-2016 18:31:49 UTC] PHP Fatal error:  Call to undefined function bookmark() in /var/www/blog-cook/wp-content/themes/goodcook/single.php on line 24
+[13-May-2016 19:18:19 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /var/www/blog-cook/wp-includes/formatting.php on line 227
+[13-May-2016 19:20:03 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /var/www/blog-cook/wp-includes/comment-template.php on line 1251
