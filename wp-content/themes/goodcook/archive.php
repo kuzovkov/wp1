@@ -20,7 +20,7 @@
                                             <div class="wrapper p3">
                                                 <div class="extra-wrap">
                                                     <p class="p1"><?php the_content('');?></p>
-                                                    <div class="relative"><a class="button-2" href="<?php the_permalink();?>">Read More</a> </div>
+                                                    <div class="relative"><a class="read-more" href="<?php the_permalink();?>">Далее</a> </div>
                                                 </div>
 
                                             </div>

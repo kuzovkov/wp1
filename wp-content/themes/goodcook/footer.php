@@ -34,6 +34,8 @@
 <script type="text/javascript">
     $('.alignleft > a').addClass('button-2');
     $('.alignright > a').addClass('button-2');
+    $('a.read-more').addClass('button-2');
+    $('a.read-more1').addClass('button-1');
 </script>
 <?php wp_footer();?>
 </body>

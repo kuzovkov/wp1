@@ -12,7 +12,7 @@
                             <?php if(function_exists('add_theme_support')) if ( has_post_thumbnail() ) { the_post_thumbnail(array(613,324));} ?>
                             <div class="banner"> <strong class="title"> <strong>Hot</strong><em>Recipe</em> </strong>
                                 <p><?php the_excerpt(); ?></p>
-                                <a class="button-1" href="<?php the_permalink();?>">Read More</a>
+                                <a class="read-more1" href="<?php the_permalink();?>">Далее</a>
                             </div>
                         </li>
                         <?php endwhile; endif; ?>
@@ -37,7 +37,7 @@
                             <article class="col-<?php $count++; if ($count < 3){$col = 1;}else{$col = 2; $count = 0;} echo $col;?>">
                                 <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                                 <p><?php the_excerpt();?></p>
-                                <div class="relative"><a class="button-2" href="<?php the_permalink();?>">Read More</a> </div>
+                                <div class="relative"><a class="read-more" href="<?php the_permalink();?>">Далее</a> </div>
                             </article>
                             <?php endwhile;?>
                             <?php else:?>
